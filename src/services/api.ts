@@ -10,6 +10,7 @@ export async function handleApiResult<T = unknown>(promise: Promise<{ data: T }>
   try {
     const { data } = await promise
     return data
+    /* eslint-disable-next-line */
   } catch (err: any) {
     console.log({ err })
     toast.error(err.toString())

@@ -12,7 +12,6 @@ import { Repo } from '../../services/githubService'
 
 const CustomCard = ({
   repoName,
-  ownerName,
   ownerDescription,
   stars,
   createdDate,
@@ -22,7 +21,7 @@ const CustomCard = ({
   isFav = false,
 }: {
   repoName: string
-  ownerName: string
+  ownerName?: string
   ownerDescription: string
   stars: number
   createdDate: string

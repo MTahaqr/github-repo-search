@@ -15,11 +15,11 @@ const BookmarkPage = () => {
   }
 
   return (
-    <SearchPageContainer>
+    <BookmarkPageContainer>
       <ListContainer>
         <Grid container spacing={1}>
           {repoList.length &&
-            repoList.map((item: any) => (
+            repoList.map((item: Repo) => (
               <Grid xs={12} key={item?.id}>
                 <CustomCard
                   key={item?.id}
@@ -37,21 +37,17 @@ const BookmarkPage = () => {
             ))}
         </Grid>
       </ListContainer>
-    </SearchPageContainer>
+    </BookmarkPageContainer>
   )
 }
 export default BookmarkPage
 
-const SearchPageContainer = styled.div`
+const BookmarkPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `
-const SearchBarContainer = styled.div``
 const ListContainer = styled.div`
   max-width: 1000px;
-`
-const LoaderContainer = styled.div`
-  margin-top: 50%;
 `

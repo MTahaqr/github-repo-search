@@ -1,4 +1,6 @@
-const saveDataToLocalStorage = ({ key, data }: { key: string; data: any }) => {
+import { Repo } from '../services/githubService'
+
+const saveDataToLocalStorage = ({ key, data }: { key: string; data: Repo }) => {
   try {
     const serializedData = JSON.stringify([data])
     localStorage.setItem(key, serializedData)
@@ -6,7 +8,7 @@ const saveDataToLocalStorage = ({ key, data }: { key: string; data: any }) => {
     console.error('Error saving data to local storage:', error)
   }
 }
-const updateDataToLocalStorage = ({ key, data }: { key: string; data: any }) => {
+const updateDataToLocalStorage = ({ key, data }: { key: string; data: Repo }) => {
   try {
     const currentData = JSON.parse(localStorage.getItem(key) as string)
     let serializedData
@@ -25,7 +27,7 @@ const deleteDataToLocalStorage = ({ key, id }: { key: string; id: number }) => {
   try {
     let currentData = JSON.parse(localStorage.getItem(key) as string)
     if (currentData.length) {
-      currentData = currentData.filter((cd: any) => cd.id != id)
+      currentData = currentData.filter((cd: Repo) => cd.id != id)
       const serializedData = JSON.stringify(currentData)
       localStorage.setItem(key, serializedData)
     }
