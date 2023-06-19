@@ -12,7 +12,7 @@ const updateDataToLocalStorage = ({ key, data }: { key: string; data: Repo }) =>
   try {
     const currentData = JSON.parse(localStorage.getItem(key) as string)
     let serializedData
-    if (currentData.length) {
+    if (currentData && currentData?.length) {
       serializedData = JSON.stringify([...currentData, data])
     } else {
       serializedData = JSON.stringify([data])
@@ -26,7 +26,7 @@ const updateDataToLocalStorage = ({ key, data }: { key: string; data: Repo }) =>
 const deleteDataToLocalStorage = ({ key, id }: { key: string; id: number }) => {
   try {
     let currentData = JSON.parse(localStorage.getItem(key) as string)
-    if (currentData.length) {
+    if (currentData && currentData?.length) {
       currentData = currentData.filter((cd: Repo) => cd.id != id)
       const serializedData = JSON.stringify(currentData)
       localStorage.setItem(key, serializedData)
@@ -39,7 +39,7 @@ const deleteDataToLocalStorage = ({ key, id }: { key: string; id: number }) => {
 const getDataFromLocalStorage = ({ key }: { key: string }) => {
   try {
     const currentData = JSON.parse(localStorage.getItem(key) as string)
-    if (currentData.length) {
+    if (currentData && currentData?.length) {
       return currentData
     }
   } catch (error) {
