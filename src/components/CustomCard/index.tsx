@@ -68,6 +68,6 @@ const StyledCard = styled(Card)`
     min-width: 845px;
   }
   @media (max-width: 1200px) {
-    max-width: 245px;
+    width: 321px;
   }
 `
