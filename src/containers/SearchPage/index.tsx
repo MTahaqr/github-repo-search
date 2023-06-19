@@ -102,6 +102,7 @@ const SearchPage = () => {
       )}
       {githubRepoList && githubRepoList?.total_count > 10 ? (
         <StyledPagination
+          siblingCount={0}
           count={Math.round(githubRepoList?.total_count / 10)}
           page={paginatiion.currentPage}
           onChange={onPageChange}
