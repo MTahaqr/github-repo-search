@@ -1,12 +1,6 @@
 import { Repo, useToGetGithubRepos } from '../../services/githubService'
 import styled from 'styled-components'
-import {
-  CircularProgress,
-  Grid,
-  InputAdornment,
-  Pagination,
-  TextField,
-} from '@mui/material'
+import { CircularProgress, Grid, InputAdornment, Pagination, TextField } from '@mui/material'
 import { Search } from '@mui/icons-material'
 import { ChangeEvent, useEffect, useState } from 'react'
 import useDebounce from '../../hooks/useDebounce'
@@ -53,12 +47,11 @@ const SearchPage = () => {
   return (
     <SearchPageContainer>
       <SearchBarContainer>
-        <TextField
+        <StyledTextFiled
           id='outlined-basic'
           label='Search'
           value={searchValue}
           variant='outlined'
-          style={{ width: '500px' }}
           InputProps={{
             startAdornment: (
               <InputAdornment position='start'>
@@ -97,10 +90,18 @@ const SearchPage = () => {
           </Grid>
         </ListContainer>
       ) : (
-        <></>
+        <>
+          {!githubRepoList?.items?.length && debouncedSearchTerm && !isLoading ? (
+            <ImgContainer>
+              <NoDataImg src='https://streamnow.appswamy.com/assets/img/no-data-found.png' />
+            </ImgContainer>
+          ) : (
+            <></>
+          )}
+        </>
       )}
       {githubRepoList && githubRepoList?.total_count > 10 ? (
-        <Pagination
+        <StyledPagination
           count={Math.round(githubRepoList?.total_count / 10)}
           page={paginatiion.currentPage}
           onChange={onPageChange}
@@ -125,4 +126,22 @@ const ListContainer = styled.div`
 `
 const LoaderContainer = styled.div`
   margin-top: 50%;
+`
+const StyledTextFiled = styled(TextField)`
+  @media (min-width: 1200px) {
+    min-width: 500px !important;
+  }
+`
+const StyledPagination = styled(Pagination)`
+  margin-top: 20px;
+`
+const ImgContainer = styled.div`
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const NoDataImg = styled.img`
+  width: 200px;
+  height: 200px;
 `
