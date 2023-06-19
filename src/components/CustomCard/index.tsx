@@ -9,6 +9,7 @@ import { red } from '@mui/material/colors'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { StarRate } from '@mui/icons-material'
 import { Repo } from '../../services/githubService'
+import styled from 'styled-components'
 
 const CustomCard = ({
   repoName,
@@ -31,7 +32,7 @@ const CustomCard = ({
   isFav?: boolean
 }) => {
   return (
-    <Card sx={{ maxWidth: 945, margin: 2 }}>
+    <StyledCard>
       <CardHeader
         avatar={<Avatar src={avatarUrl} sx={{ bgcolor: red[500] }} />}
         action={
@@ -55,7 +56,15 @@ const CustomCard = ({
           {ownerDescription}
         </Typography>
       </CardContent>
-    </Card>
+    </StyledCard>
   )
 }
 export default CustomCard
+
+const StyledCard = styled(Card)`
+  margin: 10px;
+  min-width: 100%;
+  @media (min-width: 1200px) {
+    min-width: 845px;
+  }
+`

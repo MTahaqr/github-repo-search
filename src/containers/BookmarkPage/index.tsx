@@ -10,7 +10,7 @@ const BookmarkPage = () => {
   const [repoList, setRepoList] = useState(getDataFromLocalStorage({ key: 'favRepos' }))
   const onFavClick = (item: Repo) => {
     deleteDataToLocalStorage({ key: 'favRepos', id: item.id })
-    toast.success('Removed From FBookmark')
+    toast.success('Removed From Bookmark')
     setTimeout(() => setRepoList(getDataFromLocalStorage({ key: 'favRepos' })), 1000)
   }
 
@@ -18,7 +18,7 @@ const BookmarkPage = () => {
     <BookmarkPageContainer>
       <ListContainer>
         <Grid container spacing={1}>
-          {repoList.length &&
+          {repoList && repoList.length ? (
             repoList.map((item: Repo) => (
               <Grid xs={12} key={item?.id}>
                 <CustomCard
@@ -34,7 +34,10 @@ const BookmarkPage = () => {
                   isFav
                 />
               </Grid>
-            ))}
+            ))
+          ) : (
+            <></>
+          )}
         </Grid>
       </ListContainer>
     </BookmarkPageContainer>
