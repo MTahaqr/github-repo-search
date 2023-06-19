@@ -14,6 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
+import styled from 'styled-components'
 
 interface Props {
   window?: () => Window
@@ -41,13 +42,13 @@ const MainLayout = (props: Props) => {
       <Divider />
       <List>
         {navItems.map(({ title, path }) => (
-          <Link to={path} key={path}>
+          <StyledLink to={path} key={path}>
             <ListItem key={title} disablePadding>
               <ListItemButton sx={{ textAlign: 'center' }}>
                 <ListItemText primary={title} />
               </ListItemButton>
             </ListItem>
-          </Link>
+          </StyledLink>
         ))}
       </List>
     </Box>
@@ -113,3 +114,8 @@ const MainLayout = (props: Props) => {
 }
 
 export default MainLayout
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`
